@@ -1,8 +1,10 @@
-package com.codecool.starwarspetproject;
+package com.codecool.starwarspetproject.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.codecool.starwarspetproject.R;
 
 public class MainActivity extends AppCompatActivity {
 
