@@ -46,7 +46,7 @@ public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.Ch
 
     @Override
     public int getItemCount() {
-        return characters.size();
+        return characters == null ? 0 : characters.size();
     }
 
     public class CharactersViewHolder extends RecyclerView.ViewHolder {
