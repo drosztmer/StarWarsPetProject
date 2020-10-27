@@ -1,6 +1,9 @@
 package com.codecool.starwarspetproject.main;
 
 import android.content.Context;
+import android.os.AsyncTask;
+
+import org.json.JSONObject;
 
 public class MainPresenter implements MainContract.Presenter {
 
@@ -19,5 +22,15 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void onDetach() {
         view = null;
+    }
+
+    public class FetchCharactersTask  extends AsyncTask<String, Void, JSONObject> {
+
+
+
+        @Override
+        protected JSONObject doInBackground(String... strings) {
+            return null;
+        }
     }
 }
