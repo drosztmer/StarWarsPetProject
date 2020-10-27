@@ -1,5 +1,6 @@
 package com.codecool.starwarspetproject.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,9 +23,10 @@ import java.util.List;
 public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.CharactersViewHolder> {
 
     private ArrayList<Character> characters;
+    private Context context;
 
-    public CharactersAdapter(ArrayList<Character> characters) {
-        this.characters = characters;
+    public CharactersAdapter(Context context) {
+        this.context = context;
     }
 
     public void updateCharacters(List<Character> newCharacters) {

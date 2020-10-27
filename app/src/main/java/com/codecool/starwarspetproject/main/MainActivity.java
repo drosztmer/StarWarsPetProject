@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         ButterKnife.bind(this);
 
+        presenter = new MainPresenter();
+        adapter = new CharactersAdapter(this);
     }
 
     @Override
@@ -61,5 +63,17 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void onError() {
         progressBar.setVisibility(View.GONE);
         listError.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        presenter.onAttach(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        presenter.onDetach();
     }
 }

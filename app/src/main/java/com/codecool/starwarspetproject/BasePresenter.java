@@ -1,8 +1,8 @@
 package com.codecool.starwarspetproject;
 
-import android.view.View;
+import android.content.Context;
 
 public interface BasePresenter {
-    void onAttach(View view);
+    void onAttach(Context context);
     void onDetach();
 }
