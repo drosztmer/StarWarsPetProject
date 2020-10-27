@@ -1,7 +1,7 @@
 package com.codecool.starwarspetproject;
 
 public interface BaseView {
-    void showProgress();
-    void hideProgress();
+    void showLoading();
+    void hideLoading();
     void onError();
 }
