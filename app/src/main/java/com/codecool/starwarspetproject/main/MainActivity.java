@@ -1,7 +1,9 @@
 package com.codecool.starwarspetproject.main;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @BindView(R.id.loading_view)
     ProgressBar progressBar;
 
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     private MainContract.Presenter presenter;
     private CharactersAdapter adapter;
 
@@ -37,8 +42,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         ButterKnife.bind(this);
 
-        presenter = new MainPresenter();
         adapter = new CharactersAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        presenter = new MainPresenter();
+        presenter.onAttach(this);
+        presenter.getCharacters();
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+                presenter.getCharacters();
+            }
+        });
     }
 
     @Override
@@ -66,14 +84,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        presenter.onAttach(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         presenter.onDetach();
     }
 }

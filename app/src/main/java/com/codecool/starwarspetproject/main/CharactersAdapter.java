@@ -22,7 +22,7 @@ import java.util.List;
 
 public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.CharactersViewHolder> {
 
-    private ArrayList<Character> characters;
+    private ArrayList<Character> characters = new ArrayList<>();
     private Context context;
 
     public CharactersAdapter(Context context) {

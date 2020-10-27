@@ -21,7 +21,7 @@ public class Util {
 
     public static void loadImage(ImageView view, String uri, CircularProgressDrawable progressDrawable) {
         RequestOptions options = RequestOptions
-                .centerCropTransform()
+                .fitCenterTransform()
                 .placeholder(progressDrawable)
                 .error(R.mipmap.ic_launcher_round);
         Glide.with(view.getContext())

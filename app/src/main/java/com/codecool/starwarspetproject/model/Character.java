@@ -10,6 +10,15 @@ public class Character implements Serializable {
     private String gender;
     private double height;
 
+    public Character(int id, String name, String image, String species, String gender, double height) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.species = species;
+        this.gender = gender;
+        this.height = height;
+    }
+
     public int getId() {
         return id;
     }
