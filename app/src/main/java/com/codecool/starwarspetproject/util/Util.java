@@ -1,6 +1,7 @@
 package com.codecool.starwarspetproject.util;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
@@ -21,12 +22,16 @@ public class Util {
 
     public static void loadImage(ImageView view, String uri, CircularProgressDrawable progressDrawable) {
         RequestOptions options = RequestOptions
-                .centerCropTransform()
+                .fitCenterTransform()
                 .placeholder(progressDrawable)
                 .error(R.mipmap.ic_launcher_round);
         Glide.with(view.getContext())
                 .setDefaultRequestOptions(options)
                 .load(uri)
                 .into(view);
+    }
+
+    public static void loadDetailsImage(Context context, String url, ImageView target) {
+        Glide.with(context).load(url).into(target);
     }
 }

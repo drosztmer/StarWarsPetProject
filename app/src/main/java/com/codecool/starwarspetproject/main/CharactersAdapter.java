@@ -1,5 +1,6 @@
 package com.codecool.starwarspetproject.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 import com.codecool.starwarspetproject.R;
 import com.codecool.starwarspetproject.details.DetailsActivity;
 import com.codecool.starwarspetproject.model.Character;
+import com.codecool.starwarspetproject.util.Constants;
 import com.codecool.starwarspetproject.util.Util;
 
 import java.util.ArrayList;
@@ -21,10 +23,11 @@ import java.util.List;
 
 public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.CharactersViewHolder> {
 
-    private ArrayList<Character> characters;
+    private ArrayList<Character> characters = new ArrayList<>();
+    private Context context;
 
-    public CharactersAdapter(ArrayList<Character> characters) {
-        this.characters = characters;
+    public CharactersAdapter(Context context) {
+        this.context = context;
     }
 
     public void updateCharacters(List<Character> newCharacters) {
@@ -70,7 +73,7 @@ public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.Ch
 
             itemView.setOnClickListener(v -> {
                     Intent intent = new Intent(itemView.getContext(), DetailsActivity.class);
-                    intent.putExtra("character", character);
+                    intent.putExtra(Constants.CHARACTER_TAG, character);
                     itemView.getContext().startActivity(intent);
             });
         }
