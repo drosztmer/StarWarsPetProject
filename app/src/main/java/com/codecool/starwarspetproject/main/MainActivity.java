@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void onError() {
         progressBar.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.GONE);
         listError.setVisibility(View.VISIBLE);
     }
 

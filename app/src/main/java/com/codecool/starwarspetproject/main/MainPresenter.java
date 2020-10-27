@@ -41,17 +41,18 @@ public class MainPresenter implements MainContract.Presenter {
 
         private static final String URL = "https://cdn.rawgit.com/akabab/starwars-api/0.2.1/api/all.json";
         private OkHttpClient client = new OkHttpClient();
+        private boolean error;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             view.showLoading();
+            error = false;
         }
 
         @Override
         protected ArrayList<Character> doInBackground(String... strings) {
             Request request = new Request.Builder().url(URL).build();
-
             try {
                 Response response = client.newCall(request).execute();
                 String data = response.body().string();
@@ -85,17 +86,23 @@ public class MainPresenter implements MainContract.Presenter {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                error = true;
             }
             catch (JSONException e) {
                 e.printStackTrace();
+                error = true;
             }
             return characters;
         }
 
         @Override
         protected void onPostExecute(ArrayList<Character> characters) {
-            view.setValues(characters);
-            view.hideLoading();
+            if (error) {
+                view.onError();
+            } else {
+                view.setValues(characters);
+                view.hideLoading();
+            }
         }
     }
 }
