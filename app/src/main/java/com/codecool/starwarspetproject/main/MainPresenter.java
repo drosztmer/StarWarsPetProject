@@ -4,13 +4,13 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.codecool.starwarspetproject.model.Character;
+import com.codecool.starwarspetproject.util.Constants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import okhttp3.OkHttpClient;
@@ -39,7 +39,6 @@ public class MainPresenter implements MainContract.Presenter {
 
     public class FetchCharactersTask  extends AsyncTask<String, Void, ArrayList<Character>> {
 
-        private static final String URL = "https://cdn.rawgit.com/akabab/starwars-api/0.2.1/api/all.json";
         private OkHttpClient client = new OkHttpClient();
         private boolean error;
 
@@ -52,34 +51,34 @@ public class MainPresenter implements MainContract.Presenter {
 
         @Override
         protected ArrayList<Character> doInBackground(String... strings) {
-            Request request = new Request.Builder().url(URL).build();
+            Request request = new Request.Builder().url(Constants.URL).build();
             try {
                 Response response = client.newCall(request).execute();
                 String data = response.body().string();
                 JSONArray jsonArray = new JSONArray(data);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject currentJsonObject = jsonArray.getJSONObject(i);
-                    int id = currentJsonObject.getInt("id");
+                    int id = currentJsonObject.getInt(Constants.ID_TAG);
                     String name = "";
-                    if (currentJsonObject.has("name")) {
-                        name = currentJsonObject.getString("name");
+                    if (currentJsonObject.has(Constants.NAME_TAG)) {
+                        name = currentJsonObject.getString(Constants.NAME_TAG);
                     }
                     String image = "";
-                    if (currentJsonObject.has("image")) {
-                        image = currentJsonObject.getString("image");
+                    if (currentJsonObject.has(Constants.IMAGE_TAG)) {
+                        image = currentJsonObject.getString(Constants.IMAGE_TAG);
                     }
                     String species = "";
-                    if (currentJsonObject.has("species")) {
-                        species = currentJsonObject.getString("species");
+                    if (currentJsonObject.has(Constants.SPECIES_TAG)) {
+                        species = currentJsonObject.getString(Constants.SPECIES_TAG);
                     }
                     String gender = "";
-                    if (currentJsonObject.has("gender")) {
+                    if (currentJsonObject.has(Constants.GENDER_TAG)) {
 
-                        gender = currentJsonObject.getString("gender");
+                        gender = currentJsonObject.getString(Constants.GENDER_TAG);
                     }
                     double height = 0.0;
-                    if (currentJsonObject.has("height")) {
-                        height = currentJsonObject.getDouble("height");
+                    if (currentJsonObject.has(Constants.HEIGHT_TAG)) {
+                        height = currentJsonObject.getDouble(Constants.HEIGHT_TAG);
                     }
                     Character currentCharacter = new Character(id, name, image, species, gender, height);
                     characters.add(currentCharacter);

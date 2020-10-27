@@ -15,6 +15,7 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
 import com.codecool.starwarspetproject.R;
 import com.codecool.starwarspetproject.details.DetailsActivity;
 import com.codecool.starwarspetproject.model.Character;
+import com.codecool.starwarspetproject.util.Constants;
 import com.codecool.starwarspetproject.util.Util;
 
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.Ch
 
             itemView.setOnClickListener(v -> {
                     Intent intent = new Intent(itemView.getContext(), DetailsActivity.class);
-                    intent.putExtra("character", character);
+                    intent.putExtra(Constants.CHARACTER_TAG, character);
                     itemView.getContext().startActivity(intent);
             });
         }

@@ -1,14 +1,14 @@
 package com.codecool.starwarspetproject.details;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.codecool.starwarspetproject.R;
 import com.codecool.starwarspetproject.model.Character;
+import com.codecool.starwarspetproject.util.Constants;
 import com.codecool.starwarspetproject.util.Util;
 
 import butterknife.BindView;
@@ -40,7 +40,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        character = (Character) getIntent().getSerializableExtra("character");
+        character = (Character) getIntent().getSerializableExtra(Constants.CHARACTER_TAG);
 
         setViews();
     }
