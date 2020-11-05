@@ -4,5 +4,6 @@
 ##### - Java
 ##### - MVVM
 ##### - AsyncTask
+##### - OkHttp
 ##### - JSON parsing
 ##### - RecycerView
